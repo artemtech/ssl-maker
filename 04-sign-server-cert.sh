@@ -17,7 +17,8 @@ help()
 [[ ! -e "$CONFIG" ]] && help 
 [[ ! -e "$CADIR/ca.key" || ! -e "$CADIR/ca.crt" || ! -e "$CADIR/serial" ]] && help 
 
-openssl x509 -req -days 365 -in "$WORKDIR/server.csr" -extfile "$CONFIG" -extensions v3_req -CA "$CADIR/ca.crt" -CAkey "$CADIR/ca.key" -CAserial "$CADIR/serial" -CAcreateserial -out "$WORKDIR/server.crt"
+days=$(grep days $CONFIG | awk -F '=' '{print $2}')
+openssl x509 -req -days $days -in "$WORKDIR/server.csr" -extfile "$CONFIG" -extensions v3_req -CA "$CADIR/ca.crt" -CAkey "$CADIR/ca.key" -CAserial "$CADIR/serial" -CAcreateserial -out "$WORKDIR/server.crt"
 
 # concat server + ca to bundle pem
 cat $WORKDIR/server.crt $CADIR/ca.crt >> $WORKDIR/server-bundle.pem
