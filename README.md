@@ -1,5 +1,5 @@
 # ssl-maker
-Simple script to create self signed certificate SSL with CA
+Simple script to create self signed certificate SSL with self CA
 
 ## Usage
 ```bash
