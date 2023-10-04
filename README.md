@@ -33,3 +33,7 @@ mkdir myserver
 - server-bundle.pem (server.crt + ca.crt)
 
 ```
+
+
+### reference
+- https://openssl-ca.readthedocs.io/en/latest/sign-server-and-client-certificates.html
