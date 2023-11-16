@@ -3,7 +3,7 @@ Simple script to create self signed certificate SSL with self CA
 
 ## Usage
 ```bash
-#1 create working directory for storing your ca
+#1 create empty working directory for storing your ca
 mkdir myca
 
 #2 create ca key
@@ -12,6 +12,7 @@ mkdir myca
 #3 generate config for ca
 cp example-ca.conf myca.conf
 nano myca.conf
+# edit dir= , to your full path of myca directory that created in step 1
 
 #4 create your ca
 ./02-create-rootca.sh myca.conf myca/
