@@ -23,7 +23,7 @@ nano myserver.conf
 mkdir myserver
 
 #6 generate your server csr
-./03-create-server-cert.sh myserver.conf myserver/
+./03-create-csr.sh myserver.conf myserver/
 
 #7 sign server.csr with root ca
 ./04-sign-server-cert.sh myserver.conf myserver/ myca/
@@ -33,6 +33,18 @@ mkdir myserver
 - server.key
 - server-bundle.pem (server.crt + ca.crt)
 
+# bonus
+# if you want to create certificate for digital signature only,
+# step 5
+cp example-docsign.conf mydocsign.conf
+nano mydocsign.conf
+mkdir mydoc-cert
+
+#6 generate csr
+./03-create-csr.sh mydocsign.conf mydoc-cert/
+
+#7 sign csr with root ca
+./05-sign-docsign-cert.sh mydocsign.conf mydoc-cert/ myca/
 ```
 
 
