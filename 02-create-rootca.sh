@@ -19,8 +19,5 @@ mkdir -p $WORKDIR/{private,crl,newcerts}
 touch $WORKDIR/{index.txt,serial}
 echo "1000" > $WORKDIR/serial
 
-openssl req -verbose -config "$CONFIG" -new -key "$WORKDIR/ca.key" -sha512 -out "$WORKDIR/ca.csr"
+openssl req -verbose -config "$CONFIG" -new -x509 -extensions v3_ca -sha512 -key "$WORKDIR/ca.key" -out "$WORKDIR/ca.csr"
 
-openssl ca -config "$CONFIG" -notext -out "$WORKDIR/ca.crt" -keyfile "$WORKDIR/ca.key" -verbose -selfsign -md sha512 -infiles "$WORKDIR/ca.csr"
-
-#openssl req -x509 -new -config "$CONFIG" -days 3650 -nodes -key "$WORKDIR/ca.key" -sha512 -verbose -out "$WORKDIR/ca.crt"
